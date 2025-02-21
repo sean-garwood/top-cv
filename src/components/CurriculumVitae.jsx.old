@@ -1,0 +1,56 @@
+import { SOME_CV } from "../constants/data.js";
+
+export default function CurriculumVitae({ cv = SOME_CV }) {
+  return (
+    <div>
+      <h1>CV</h1>
+      <p id="instructions">
+        <i>
+          Enter your information to the form below. Submit it to get a nice HTML
+          resume!
+        </i>
+      </p>
+      <h3>Contact Information</h3>
+      <p>Name: {cv.contactInfo.name}</p>
+      <p>Email: {cv.contactInfo.email}</p>
+      <p>Phone: {cv.contactInfo.phone}</p>
+      <p>
+        Address: {cv.contactInfo.address.street}, {cv.contactInfo.address.city},{" "}
+        {cv.contactInfo.address.state}
+      </p>
+
+      <h3>School History</h3>
+      <ul>
+        {cv.experience.schoolHistory.map((school) => (
+          <li key={school.id}>
+            <h4>{school.name}</h4>
+            <p>Diploma: {school.diploma}</p>
+            <p>
+              Date Range: {school.dateRange.start} - {school.dateRange.end}
+            </p>
+            <p>Areas of Study:</p>
+            <ul>
+              {school.areasOfStudy.map((area) => (
+                <li key={area.id}>{area.area}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+
+      <h3>Work History</h3>
+      <ul>
+        {cv.experience.workHistory.map((work) => (
+          <li key={work.id}>
+            <h4>{work.companyName}</h4>
+            <p>Title: {work.title}</p>
+            <p>Description: {work.description}</p>
+            <p>
+              Date Range: {work.dateRange.start} - {work.dateRange.end}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
