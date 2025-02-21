@@ -1,4 +1,5 @@
 import "./App.css";
+import ContactInfo from "./components/ContactInfo";
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
           resume!
         </i>
       </p>
+      <ContactInfo />
     </>
   );
 }
