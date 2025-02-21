@@ -1,5 +1,5 @@
-import SchoolExperience from "./Experience/SchoolExperience.jsx";
-import WorkExperience from "./Experience/WorkExperience.jsx";
+import SchoolExperience from "./experience/SchoolExperience.jsx";
+import WorkExperience from "./experience/WorkExperience.jsx";
 
 export default function Experience({ schoolHistory, workHistory }) {
   return (

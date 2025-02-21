@@ -1,12 +1,16 @@
+import { useState } from "react";
 import { SOME_CV } from "../constants/data.js";
 import ContactInfo from "./ContactInfo.jsx";
 import Experience from "./Experience.jsx";
-// import { useState } from "react";
+import Form from "./Form.jsx";
 
-export default function CurriculumVitae({ cirriculumVitae = SOME_CV }) {
-  // const [cirriculumVitae, setCirriculmVitae] = useState(cirriculumVitae);
-  const workHistory = cirriculumVitae.experience.workHistory;
-  const schoolHistory = cirriculumVitae.experience.schoolHistory;
+export default function CurriculumVitae({ initialCV = SOME_CV }) {
+  const [cv, setCV] = useState(initialCV);
+
+  const handleFormSubmit = (newCV) => {
+    setCV(newCV);
+  };
+
   return (
     <div>
       <h1>CV</h1>
@@ -16,8 +20,12 @@ export default function CurriculumVitae({ cirriculumVitae = SOME_CV }) {
           resume!
         </i>
       </p>
-      <ContactInfo contactInfo={cirriculumVitae.contactInfo} />
-      <Experience workHistory={workHistory} schoolHistory={schoolHistory} />
+      <Form onSubmit={handleFormSubmit} />
+      <ContactInfo contactInfo={cv.contactInfo} />
+      <Experience
+        workHistory={cv.experience.workHistory}
+        schoolHistory={cv.experience.schoolHistory}
+      />
     </div>
   );
 }
