@@ -1,20 +1,21 @@
 export default function SchoolExperience({ history }) {
+  if (!Array.isArray(history) || history.length === 0) {
+    return <div>No school history provided.</div>;
+  }
   return (
     <div>
-      <h3>School Experience</h3>
-      {/* set up cards that hold info for everything in history array */}
       {history.map((school) => (
-        <div key={school.id} className="card">
+        <div key={school.id || school.name}>
           <h4>{school.name}</h4>
-          <p>
-            {school.areasOfStudy.map((area) => (
-              <span key={area.id}>{area.area}</span>
-            ))}
-          </p>
           <p>{school.diploma}</p>
           <p>
-            {school.dateRange.start} - {school.dateRange.end}
+            {school.dateRange?.start} - {school.dateRange?.end}
           </p>
+          <ul>
+            {(school.areasOfStudy || []).map((area, idx) => (
+              <li key={area.id || idx}>{area.area}</li>
+            ))}
+          </ul>
         </div>
       ))}
     </div>

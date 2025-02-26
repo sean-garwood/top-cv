@@ -3,7 +3,7 @@ import Address from "./contact-info-form/AddressForm";
 import Email from "./contact-info-form/EmailForm";
 import Phone from "./contact-info-form/PhoneForm";
 
-export default function ContactInfoForm({ contactInfo, onInfoChange }) {
+export default function ContactInfoForm({ contactInfo }) {
   const [address, setAddress] = useState({
     street: contactInfo.address.street,
     city: contactInfo.address.city,
@@ -26,24 +26,9 @@ export default function ContactInfoForm({ contactInfo, onInfoChange }) {
 
   return (
     <section>
-      <form id="contactInfoForm">
-        <fieldset>
-          <legend>Contact Information</legend>
-          <Address address={address} onAddressChange={onAddressChange} />
-          <Email email={email} onEmailChange={onEmailChange} />
-          <Phone phone={phone} onPhoneChange={onPhoneChange} />
-        </fieldset>
-      </form>
-      <button
-        type="submit"
-        form="contactInfoForm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          onInfoChange({ address, email, phone });
-        }} // TODO: implement handler to output the form data in HTML
-      >
-        Submit
-      </button>
+      <Address address={address} onAddressChange={onAddressChange} />
+      <Email email={email} onEmailChange={onEmailChange} />
+      <Phone phone={phone} onPhoneChange={onPhoneChange} />
     </section>
   );
 }

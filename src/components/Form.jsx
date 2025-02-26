@@ -1,38 +1,34 @@
-import { useState } from "react";
-import ContactInfo from "./form/ContactInfoForm.jsx";
+import ContactInfoForm from "./form/ContactInfoForm.jsx";
 import ExperienceForm from "./form/ExperienceForm.jsx";
 
-export default function Form({ onSubmit }) {
-  const [contactInfo, setContactInfoForm] = useState({
-    name: "",
-    address: {
-      street: "",
-      city: "",
-      state: "",
-    },
-    email: "",
-    phone: "",
-  });
-
-  const [schoolHistory, setSchoolHistory] = useState([]);
-  const [workHistory, setWorkHistory] = useState([]);
-
-  const handleContactInfoFormhange = (newContactInfo) => {
-    setContactInfoForm(...contactInfo, newContactInfo);
-  };
-  const handleSchoolHistoryChange = (newSchoolHistory) => {
-    setSchoolHistory(...schoolHistory, newSchoolHistory);
-  };
-
-  const handleWorkHistoryChange = (newWorkHistory) => {
-    setWorkHistory(...workHistory, newWorkHistory);
+export default function Form({
+  onSubmit,
+  contactInfo,
+  addOrChangeContactInfo,
+  schoolHistory,
+  workHistory,
+  handleSchoolHistoryChange,
+  handleWorkHistoryChange,
+}) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Compose the CV object from the current state
+    const cv = {
+      contactInfo,
+      experience: {
+        schoolHistory,
+        workHistory,
+      },
+    };
+    onSubmit(cv);
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <ContactInfo
+    <form onSubmit={handleSubmit}>
+      <h2>CV Form</h2>
+      <ContactInfoForm
         contactInfo={contactInfo}
-        onChange={handleContactInfoFormhange}
+        onSubmit={addOrChangeContactInfo}
       />
       <ExperienceForm
         schoolHistory={schoolHistory}

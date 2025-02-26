@@ -10,6 +10,30 @@ export default function CurriculumVitae({ initialCV = SOME_CV }) {
   const handleFormSubmit = (newCV) => {
     setCV(newCV);
   };
+  const [contactInfo, setContactInfo] = useState({
+    name: "",
+    address: {
+      street: "",
+      city: "",
+      state: "",
+    },
+    email: "",
+    phone: "",
+  });
+
+  const [schoolHistory, setSchoolHistory] = useState([]);
+  const [workHistory, setWorkHistory] = useState([]);
+
+  const addOrChangeContactInfo = (newContactInfo) => {
+    setContactInfo(...contactInfo, newContactInfo);
+  };
+  const handleSchoolHistoryChange = (newSchoolHistory) => {
+    setSchoolHistory(...schoolHistory, newSchoolHistory);
+  };
+
+  const handleWorkHistoryChange = (newWorkHistory) => {
+    setWorkHistory(...workHistory, newWorkHistory);
+  };
 
   return (
     <div>
@@ -20,7 +44,15 @@ export default function CurriculumVitae({ initialCV = SOME_CV }) {
           resume!
         </i>
       </p>
-      <Form onSubmit={handleFormSubmit} />
+      <Form
+        onSubmit={handleFormSubmit}
+        contactInfo={contactInfo}
+        addOrChangeContactInfo={addOrChangeContactInfo}
+        schoolHistory={schoolHistory}
+        workHistory={workHistory}
+        handleSchoolHistoryChange={handleSchoolHistoryChange}
+        handleWorkHistoryChange={handleWorkHistoryChange}
+      />
       <ContactInfo contactInfo={cv.contactInfo} />
       <Experience
         workHistory={cv.experience.workHistory}
