@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import CurriculumVitae from "./components/CurriculumVitae.jsx";
 
 export default function App() {

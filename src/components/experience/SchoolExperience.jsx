@@ -12,7 +12,10 @@ export default function SchoolExperience({ history }) {
             {school.dateRange?.start} - {school.dateRange?.end}
           </p>
           <ul>
-            {(school.areasOfStudy || []).map((area, idx) => (
+            {(Array.isArray(school.areasOfStudy)
+              ? school.areasOfStudy
+              : []
+            ).map((area, idx) => (
               <li key={area.id || idx}>{area.area}</li>
             ))}
           </ul>

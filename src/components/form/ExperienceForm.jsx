@@ -10,7 +10,7 @@ export default function ExperienceForm({
     name: "",
     diploma: "",
     dateRange: { start: "", end: "" },
-    areasOfStudy: "",
+    areasOfStudy: [], // Initialize as array instead of string
   });
 
   const [newWork, setNewWork] = useState({
@@ -22,7 +22,13 @@ export default function ExperienceForm({
 
   const handleNewSchoolChange = (event) => {
     const { name, value } = event.target;
-    setNewSchool({ ...newSchool, [name]: value });
+    if (name === "areasOfStudy") {
+      // Convert comma-separated string to array of objects
+      const areas = value.split(",").map((area) => ({ area: area.trim() }));
+      setNewSchool({ ...newSchool, areasOfStudy: areas });
+    } else {
+      setNewSchool({ ...newSchool, [name]: value });
+    }
   };
 
   const handleNewWorkChange = (event) => {
@@ -31,12 +37,22 @@ export default function ExperienceForm({
   };
 
   const addSchool = () => {
-    onSchoolHistoryChange([...schoolHistory, newSchool]);
+    // Ensure areasOfStudy is an array of objects
+    const schoolToAdd = {
+      ...newSchool,
+      areasOfStudy: Array.isArray(newSchool.areasOfStudy)
+        ? newSchool.areasOfStudy
+        : newSchool.areasOfStudy
+            .split(",")
+            .map((area) => ({ area: area.trim() })),
+    };
+
+    onSchoolHistoryChange([...schoolHistory, schoolToAdd]);
     setNewSchool({
       name: "",
       diploma: "",
       dateRange: { start: "", end: "" },
-      areasOfStudy: "",
+      areasOfStudy: [], // Reset as array
     });
   };
 
@@ -62,7 +78,11 @@ export default function ExperienceForm({
             <p>
               {school.dateRange.start} - {school.dateRange.end}
             </p>
-            <p>{school.areasOfStudy}</p>
+            <p>
+              {Array.isArray(school.areasOfStudy)
+                ? school.areasOfStudy.map((area) => area.area).join(", ")
+                : school.areasOfStudy}
+            </p>
           </div>
         ))}
         <input
@@ -104,7 +124,11 @@ export default function ExperienceForm({
         <input
           type="text"
           name="areasOfStudy"
-          value={newSchool.areasOfStudy}
+          value={
+            Array.isArray(newSchool.areasOfStudy)
+              ? newSchool.areasOfStudy.map((area) => area.area).join(", ")
+              : newSchool.areasOfStudy
+          }
           onChange={handleNewSchoolChange}
           placeholder="Areas of Study (comma separated)"
         />

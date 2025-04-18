@@ -6,17 +6,17 @@ export default function ContactInfo({ contactInfo }) {
     <section>
       <h2>Contact Information</h2>
       <p>
-        <strong>Name:</strong> {contactInfo.name}
+        <strong>Name:</strong> {contactInfo.name || ""}
       </p>
       <p>
-        <strong>Address:</strong> {contactInfo.address.street},{" "}
-        {contactInfo.address.city}, {contactInfo.address.state}
+        <strong>Address:</strong> {contactInfo.address?.street || ""},{" "}
+        {contactInfo.address?.city || ""}, {contactInfo.address?.state || ""}
       </p>
       <p>
-        <strong>Email:</strong> {contactInfo.email}
+        <strong>Email:</strong> {contactInfo.email || ""}
       </p>
       <p>
-        <strong>Phone:</strong> {contactInfo.phone}
+        <strong>Phone:</strong> {contactInfo.phone || ""}
       </p>
     </section>
   );
