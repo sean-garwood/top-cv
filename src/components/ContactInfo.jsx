@@ -1,4 +1,7 @@
 export default function ContactInfo({ contactInfo }) {
+  if (!contactInfo) {
+    return <div>No contact information provided.</div>;
+  }
   return (
     <section>
       <h2>Contact Information</h2>

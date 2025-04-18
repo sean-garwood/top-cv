@@ -1,4 +1,7 @@
 export default function WorkExperience({ history }) {
+  if (!Array.isArray(history) || history.length === 0) {
+    return <div>No work history provided.</div>;
+  }
   // return array of cards with info for each job
   return (
     <div>
