@@ -69,9 +69,9 @@ export default function ContactInfoForm({ contactInfo, onSubmit }) {
             required
           />
         </div>
-        <Address address={address} onAddressChange={onAddressChange} />
         <Email email={email} onEmailChange={onEmailChange} />
         <Phone phone={phone} onPhoneChange={onPhoneChange} />
+        <Address address={address} onAddressChange={onAddressChange} />
         <button type="submit">Save Contact Info</button>
       </form>
     </section>

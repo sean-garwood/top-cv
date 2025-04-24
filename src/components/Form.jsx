@@ -25,7 +25,9 @@ export default function Form({
 
   return (
     <div className="cv-form">
-      <h2>Edit Your CV</h2>
+      <button className="submit-cv-button" onClick={handleSubmit}>
+        Submit CV
+      </button>
       <ContactInfoForm
         contactInfo={contactInfo}
         onSubmit={addOrChangeContactInfo}
@@ -36,9 +38,6 @@ export default function Form({
         onSchoolHistoryChange={handleSchoolHistoryChange}
         onWorkHistoryChange={handleWorkHistoryChange}
       />
-      <button className="submit-cv-button" onClick={handleSubmit}>
-        Submit CV
-      </button>
     </div>
   );
 }

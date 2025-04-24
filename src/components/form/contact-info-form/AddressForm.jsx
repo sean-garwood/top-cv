@@ -16,6 +16,15 @@ function City({ value, onChange }) {
   );
 }
 
+function State({ value, onChange }) {
+  return (
+    <div>
+      <label>State:</label>
+      <input type="text" value={value} onChange={onChange} />
+    </div>
+  );
+}
+
 function ZipCode({ value, onChange }) {
   return (
     <div>
@@ -28,12 +37,16 @@ function ZipCode({ value, onChange }) {
 export default function Address({ address, onAddressChange }) {
   return (
     <div>
-      <label>Address</label>
+      <h3>Address</h3>
       <Street
         value={address.street}
         onChange={(e) => onAddressChange(e, "street")}
       />
       <City value={address.city} onChange={(e) => onAddressChange(e, "city")} />
+      <State
+        value={address.state}
+        onChange={(e) => onAddressChange(e, "state")}
+      />
       <ZipCode
         value={address.zipCode}
         onChange={(e) => onAddressChange(e, "zipCode")}

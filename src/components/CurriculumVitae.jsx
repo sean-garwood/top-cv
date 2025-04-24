@@ -1,33 +1,26 @@
 import { useState } from "react";
-import { SOME_CV } from "../constants/data.js";
 import ContactInfo from "./ContactInfo.jsx";
 import Experience from "./Experience.jsx";
 import Form from "./Form.jsx";
 
-export default function CurriculumVitae({ initialCV = SOME_CV }) {
-  const [cv, setCV] = useState(initialCV);
-  const [editMode, setEditMode] = useState(true); // Start in edit mode
+export default function CurriculumVitae() {
+  const [cv, setCV] = useState();
+  const [editMode, setEditMode] = useState(true);
 
-  // Initialize form state from initialCV
-  const [contactInfo, setContactInfo] = useState(
-    initialCV.contactInfo || {
-      name: "",
-      address: {
-        street: "",
-        city: "",
-        state: "",
-      },
-      email: "",
-      phone: "",
-    }
-  );
+  const [contactInfo, setContactInfo] = useState({
+    name: "",
+    address: {
+      street: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    },
+    email: "",
+    phone: "",
+  });
 
-  const [schoolHistory, setSchoolHistory] = useState(
-    initialCV.experience?.schoolHistory || []
-  );
-  const [workHistory, setWorkHistory] = useState(
-    initialCV.experience?.workHistory || []
-  );
+  const [schoolHistory, setSchoolHistory] = useState([]);
+  const [workHistory, setWorkHistory] = useState([]);
 
   const handleFormSubmit = (newCV) => {
     setCV(newCV);

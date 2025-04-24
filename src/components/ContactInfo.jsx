@@ -10,7 +10,8 @@ export default function ContactInfo({ contactInfo }) {
       </p>
       <p>
         <strong>Address:</strong> {contactInfo.address?.street || ""},{" "}
-        {contactInfo.address?.city || ""}, {contactInfo.address?.state || ""}
+        {contactInfo.address?.city || ""}, {contactInfo.address?.state || ""},{" "}
+        {contactInfo.address?.zipCode || ""}
       </p>
       <p>
         <strong>Email:</strong> {contactInfo.email || ""}
