@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Address from "./contact-info-form/AddressForm";
 import Email from "./contact-info-form/EmailForm";
 import Phone from "./contact-info-form/PhoneForm";
@@ -13,20 +13,6 @@ export default function ContactInfoForm({ contactInfo, onSubmit }) {
   });
   const [email, setEmail] = useState(contactInfo?.email || "");
   const [phone, setPhone] = useState(contactInfo?.phone || "");
-
-  useEffect(() => {
-    if (contactInfo) {
-      setName(contactInfo.name || "");
-      setAddress({
-        street: contactInfo.address?.street || "",
-        city: contactInfo.address?.city || "",
-        state: contactInfo.address?.state || "",
-        zipCode: contactInfo.address?.zipCode || "",
-      });
-      setEmail(contactInfo.email || "");
-      setPhone(contactInfo.phone || "");
-    }
-  }, [contactInfo]);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
