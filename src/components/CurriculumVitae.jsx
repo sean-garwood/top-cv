@@ -30,14 +30,8 @@ export default function CurriculumVitae({ initialCV = SOME_CV }) {
   );
 
   const handleFormSubmit = (newCV) => {
-    setCV({
-      contactInfo,
-      experience: {
-        schoolHistory,
-        workHistory,
-      },
-    });
-    setEditMode(false); // Switch to view mode after submission
+    setCV(newCV);
+    setEditMode(false);
   };
 
   const handleEditClick = () => {
@@ -56,21 +50,17 @@ export default function CurriculumVitae({ initialCV = SOME_CV }) {
   };
 
   const handleSchoolHistoryChange = (newSchoolHistory) => {
-    // Make sure we're getting a proper array or safely handle non-array inputs
     if (Array.isArray(newSchoolHistory)) {
       setSchoolHistory(newSchoolHistory);
     } else if (newSchoolHistory && typeof newSchoolHistory === "object") {
-      // If receiving a single school entry, add it to the array
       setSchoolHistory((prev) => [...prev, newSchoolHistory]);
     }
   };
 
   const handleWorkHistoryChange = (newWorkHistory) => {
-    // Make sure we're getting a proper array or safely handle non-array inputs
     if (Array.isArray(newWorkHistory)) {
       setWorkHistory(newWorkHistory);
     } else if (newWorkHistory && typeof newWorkHistory === "object") {
-      // If receiving a single work entry, add it to the array
       setWorkHistory((prev) => [...prev, newWorkHistory]);
     }
   };
