@@ -12,7 +12,6 @@ export default function Form({
 }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Compose the CV object from the current state
     const cv = {
       contactInfo,
       experience: {

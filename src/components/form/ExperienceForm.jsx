@@ -10,7 +10,7 @@ export default function ExperienceForm({
     name: "",
     diploma: "",
     dateRange: { start: "", end: "" },
-    areasOfStudy: [], // Initialize as array instead of string
+    areasOfStudy: [],
   });
 
   const [newWork, setNewWork] = useState({
@@ -23,7 +23,6 @@ export default function ExperienceForm({
   const handleNewSchoolChange = (event) => {
     const { name, value } = event.target;
     if (name === "areasOfStudy") {
-      // Convert comma-separated string to array of objects
       const areas = value.split(",").map((area) => ({ area: area.trim() }));
       setNewSchool({ ...newSchool, areasOfStudy: areas });
     } else {
@@ -37,7 +36,6 @@ export default function ExperienceForm({
   };
 
   const addSchool = () => {
-    // Ensure areasOfStudy is an array of objects
     const schoolToAdd = {
       ...newSchool,
       areasOfStudy: Array.isArray(newSchool.areasOfStudy)
@@ -52,7 +50,7 @@ export default function ExperienceForm({
       name: "",
       diploma: "",
       dateRange: { start: "", end: "" },
-      areasOfStudy: [], // Reset as array
+      areasOfStudy: [],
     });
   };
 
@@ -68,7 +66,7 @@ export default function ExperienceForm({
 
   return (
     <fieldset>
-      <legend>Experience</legend>
+      <h2>Experience</h2>
       <div>
         <h3>School History</h3>
         {schoolHistory.map((school, index) => (

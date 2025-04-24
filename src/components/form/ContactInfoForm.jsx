@@ -14,7 +14,6 @@ export default function ContactInfoForm({ contactInfo, onSubmit }) {
   const [email, setEmail] = useState(contactInfo?.email || "");
   const [phone, setPhone] = useState(contactInfo?.phone || "");
 
-  // Update form when contactInfo prop changes (for edit mode)
   useEffect(() => {
     if (contactInfo) {
       setName(contactInfo.name || "");

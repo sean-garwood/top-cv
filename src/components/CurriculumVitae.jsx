@@ -3,21 +3,23 @@ import ContactInfo from "./ContactInfo.jsx";
 import Experience from "./Experience.jsx";
 import Form from "./Form.jsx";
 
+const blankContactInfo = {
+  name: "",
+  address: {
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+  },
+  email: "",
+  phone: "",
+};
+
 export default function CurriculumVitae() {
   const [cv, setCV] = useState();
   const [editMode, setEditMode] = useState(true);
 
-  const [contactInfo, setContactInfo] = useState({
-    name: "",
-    address: {
-      street: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    },
-    email: "",
-    phone: "",
-  });
+  const [contactInfo, setContactInfo] = useState(blankContactInfo);
 
   const [schoolHistory, setSchoolHistory] = useState([]);
   const [workHistory, setWorkHistory] = useState([]);
@@ -29,6 +31,13 @@ export default function CurriculumVitae() {
 
   const handleEditClick = () => {
     setEditMode(true);
+  };
+
+  const handleDeleteClick = () => {
+    setEditMode(true);
+    setContactInfo(blankContactInfo);
+    setSchoolHistory([]);
+    setWorkHistory([]);
   };
 
   const addOrChangeContactInfo = (newContactInfo) => {
@@ -66,7 +75,7 @@ export default function CurriculumVitae() {
         <>
           <p id="instructions">
             <i>
-              Enter your information to the form below. Submit it to get a nice
+              Enter your information in the form below. Submit it to get a nice
               HTML resume!
             </i>
           </p>
@@ -91,6 +100,9 @@ export default function CurriculumVitae() {
             />
             <button className="edit-button" onClick={handleEditClick}>
               Edit CV
+            </button>
+            <button className="delete-button" onClick={handleDeleteClick}>
+              Delete CV
             </button>
           </div>
         </>
